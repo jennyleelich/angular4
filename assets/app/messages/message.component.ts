@@ -24,5 +24,6 @@ export class MessageComponent {
    onEdit(){
        this.editClicked.emit('this is new message emitted');
    }
+   color = "red";
 
 }
