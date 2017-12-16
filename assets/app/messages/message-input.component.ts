@@ -6,16 +6,16 @@ import { Message } from "./message.model";
         <div class="col-md-8 col-md-offset-2" >
             <div class="form-group">
                 <label for="content">Content</label>
-                <input type="text" id="content" class="form-control" [(ngModel)]="inputValue">
+                <input type="text" id="content" class="form-control" #input>
             </div>
-            <button class="btn btn-primary" type="submit" (click)="onSave()">Save</button>
+            <button class="btn btn-primary" type="submit" (click)="onSave(input.value)">Save</button>
         </div>
     
     `
 })
 export class MessageInputComponent {
     inputValue:any;
-    onSave(){
-        alert(this.inputValue);
+    onSave(value:any){
+        alert(value);
     }
 }
