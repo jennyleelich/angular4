@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Message } from "./message.model";
+import { MessageService } from "./message.service";
 @Component({
     selector: 'app-message-input',
     template:`
@@ -14,8 +15,10 @@ import { Message } from "./message.model";
     `
 })
 export class MessageInputComponent {
+    constructor(private messageService: MessageService){}
     inputValue:any;
     onSave(value:any){
-        alert(value);
+        const message = new Message(value, 'Max');
+        this.messageService.addMessage( message);
     }
 }
