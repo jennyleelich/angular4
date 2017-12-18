@@ -5,7 +5,7 @@ export class MessageService {
        this.messages.push(message);
        console.log(this.messages);
    }
-   getMessage() {
+   getMessages() {
        return this.messages;
    }
    deleteMessage(message: Message) {
