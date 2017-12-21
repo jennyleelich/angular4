@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
+var messageRoutes = require('./routes/messages');
+
 
 var app = express();
 mongoose.connect('mongodb://localhost:27017/node-angular?authSource=admin',{useMongoClient:true});
@@ -29,6 +31,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use('/message',messageRoutes);//this is very important that set more specific routes first 
+                                //so that we can handle them before more generic routes try to handle them
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler
