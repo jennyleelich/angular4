@@ -21,13 +21,15 @@ import { MessageService } from "./message.service";
 })
 export class MessageComponent {
    @Input() message: Message;
-   @Output() editClicked = new EventEmitter<any>();
    constructor(private messageService: MessageService){};
    onEdit(){
-       this.editClicked.emit('this is new message emitted');
-   }
+       this.messageService.editMessage(this.message)
+          }
    onDelete(){
-        this.messageService.deleteMessage(this.message);
+        this.messageService.deleteMessage(this.message)
+        .subscribe(
+            result => console.log(result)
+        )
    }
 
 }
