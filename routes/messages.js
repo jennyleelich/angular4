@@ -67,7 +67,9 @@ router.get('/',function(req,res,next){
             })
 })
 router.delete('/:id',function(req,res,next){
+    console.log('req is:',req.params);
     Message.findById(req.params.id, function(err,message){
+
         if(err){
             return res.status(500).json({
                 title: 'An error occured',

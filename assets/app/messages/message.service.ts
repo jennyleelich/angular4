@@ -35,6 +35,7 @@ export class MessageService {
    getMessages() {
        return this.http.get('/message')
                   .map(response => {
+                      console.log('get response',response);
                       const messages = response.json().obj;
                       let transformedMessages: Message[] = [];
                       for(let message of messages) {
@@ -69,10 +70,10 @@ export class MessageService {
    
    deleteMessage(message: Message) {
        this.messages.splice(this.messages.indexOf(message),1);
-       return this.http.delete("/message/"+message.messageId,message)
+       return this.http.delete("/message/"+message.messageId)
              .map(response => {
                 // console.log('response',response);
-                // console.log('responsejson',response.json());
+                console.log('responsejson',response.json());
                  return response.json()
                 })
              .catch(error => {
