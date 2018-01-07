@@ -7,6 +7,7 @@ import { MessageComponent } from "./messages/message.component";
 import { MessageListComponent } from "./messages/message-list.component";
 import { MessageInputComponent } from "./messages/message-input.component";
 import { MessageService } from "./messages/message.service";
+import { AuthService } from "./auth/auth.service";
 import { MessagesComponent } from "./messages/messages.component";
 import { AuthenticationComponent } from "./auth/authentication.component";
 import { HeaderComponent } from "./header/header.component";
@@ -29,8 +30,8 @@ import { routing } from "./app.routing";
         SignupComponent
     ],
     imports: [BrowserModule,FormsModule, routing, ReactiveFormsModule, HttpModule],
-    bootstrap: [AppComponent],
-    providers: [ MessageService ]
+    providers: [ MessageService,AuthService ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 
