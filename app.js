@@ -32,6 +32,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+
 app.use('/message',messageRoutes);//this is very important that set more specific routes first 
 app.use('/user',userRoutes);                               //so that we can handle them before more generic routes try to handle them
 app.use('/', appRoutes);

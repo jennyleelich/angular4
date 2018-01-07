@@ -12,7 +12,7 @@ export class AuthService {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type':'application/json'});
         return this.http.post('/user',body,{headers:headers})
-                .map((response:Response)=> response.json())
-                .catch((error:Response)=> Observable.throw(error.json()));
+                .map((response)=> response.json())
+                .catch((error)=> Observable.throw(error.json()));
     }
 }

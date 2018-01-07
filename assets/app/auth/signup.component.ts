@@ -14,19 +14,21 @@ export class SignupComponent implements OnInit{
             firstName: new FormControl(null, Validators.required),
             lastName: new FormControl(null, Validators.required),
             email: new FormControl(null, [Validators.required,Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]),
-            password: new FormControl(null, Validators.required)
+            passWord: new FormControl(null, Validators.required)
         });
     }
     onSubmit() {
         const user = new User(
             this.myForm.value.email,
-            this.myForm.value.password,
+            this.myForm.value.passWord,
             this.myForm.value.firstName,
             this.myForm.value.lastName
         )
-        this.authService.signup(user).subscribe(
-             data => console.log(data),
-             error => console.error(error)
+        this.authService.signup(user)
+         .subscribe(
+             res => {
+                 console.log(res)
+             }
         );
         this.myForm.reset();
     }
