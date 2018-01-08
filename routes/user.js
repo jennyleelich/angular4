@@ -38,13 +38,13 @@ router.post('/signin',function(req,res,next){
                 error:{message: 'Invalid login credentials'}
             });
         }
-        if(!bcrpt.compareSync(req.body.passWord,user.passWord)){
+        if(!bcrypt.compareSync(req.body.passWord,user.passWord)){
             return res.status(401).json({
                 title:'Login failed',
                 error:{message: 'Invalid login credentials'}
             });
         }
-        var token = jwt.sign({user:user},'secret',{expireIn:7200});//created a new token and signs it for us, generate and sign it
+        var token = jwt.sign({user:user},'secret',{expiresIn:7200});//created a new token and signs it for us, generate and sign it
         res.status(200).json({
             message:'Successfully logged in',
             token: token,
