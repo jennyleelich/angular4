@@ -6,8 +6,7 @@ var schema = new Schema({
     lastName:{ type: String, required: true},
     passWord:{ type: String, required: true},
     email:{ type: String, required: true, unique: true},
-    
-    messages: { type: Schema.Types.ObjectId, ref: 'Message'}
+    messages: [{ type: Schema.Types.ObjectId, ref: 'Message'}]
 })
 schema.plugin(mongooseUniqueValidator);
 module.exports = mongoose.model('User',schema);

@@ -9,7 +9,8 @@ router.post('/', function (req, res, next) {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         passWord: bcrypt.hashSync(req.body.passWord,10),
-        email: req.body.email
+        email: req.body.email,
+        messages:req.body.messages
     });
     user.save(function(err,result){
         if(err){

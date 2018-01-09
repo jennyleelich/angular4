@@ -23,7 +23,7 @@ export class MessageInputComponent implements OnInit{
             this.message.content = form.value.content;
             this.messageService.updateMessage(this.message)
                 .subscribe(
-                    result => console.log(this.message);
+                    result => console.log(this.message)
                 )
             console.log("before nul",this.message);
             this.message = null;
