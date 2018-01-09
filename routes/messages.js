@@ -6,6 +6,7 @@ var User = require('../models/user');
 
 router.get('/',function(req,res,next){
     Message.find()
+            .populate('user','firstName')
             .exec(function(err,messages){
                  if(err){
                         return res.status(500).json({
@@ -57,6 +58,7 @@ router.post('/', function (req, res, next) {
             console.log('user',user);
             user.messages.push(result);
             user.save();
+            result.user = user;
             res.status(201).json({
                     message: 'Saved message',
                     obj: result
