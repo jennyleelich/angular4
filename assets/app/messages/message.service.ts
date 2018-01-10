@@ -3,12 +3,13 @@ import { Injectable, EventEmitter } from "@angular/core";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
 import { Message } from "./message.model";
+import { ErrorService } from "../errors/error.service";
 
 @Injectable()
 export class MessageService {
    private messages: Message[] = [];
    messageIsEdit = new EventEmitter<Message>();
-   constructor(private http: Http) {}
+   constructor(private http: Http, private errorService: ErrorService) {}
    addMessage(message: Message) {
        //this.messages.push(message);
        //console.log(this.messages);
@@ -34,6 +35,7 @@ export class MessageService {
                  return message;
             })
              .catch(error => {
+                 this.errorService.handleError(error.json());
                  return Observable.throw(error.json())
                 })
        
@@ -57,9 +59,10 @@ export class MessageService {
                       this.messages = transformedMessages;
                       return transformedMessages;
                   })
-                  .catch(error => {
+               .catch(error => {
+                 this.errorService.handleError(error.json());
                  return Observable.throw(error.json())
-                });
+                })
    }
    editMessage(message:Message){
         this.messageIsEdit.emit(message);
@@ -76,7 +79,8 @@ export class MessageService {
                 // console.log('responsejson',response.json());
                  return response.json()
                 })
-             .catch(error => {
+              .catch(error => {
+                 this.errorService.handleError(error.json());
                  return Observable.throw(error.json())
                 })
        
@@ -96,7 +100,8 @@ export class MessageService {
                 console.log('responsejson',response.json());
                  return response.json()
                 })
-             .catch(error => {
+              .catch(error => {
+                 this.errorService.handleError(error.json());
                  return Observable.throw(error.json())
                 })
 }
